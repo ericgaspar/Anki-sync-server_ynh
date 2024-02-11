@@ -2,22 +2,20 @@
 
 packaging_format = 2
 
-id = "anki"
+id = "aankisyncd"
 name = "Anki sync server"
-description.en = "Explain in *a few (10~15) words* the purpose of the app or what it actually does (it is meant to give a rough idea to users browsing a catalog of 100+ apps)"
-description.fr = "Expliquez en *quelques* (10~15) mots l'utilité de l'app ou ce qu'elle fait (l'objectif est de donner une idée grossière pour des utilisateurs qui naviguent dans un catalogue de 100+ apps)"
+description.en = "Personal Anki sync server (so you can sync against your own server rather than AnkiWeb)"
+description.fr = "Serveur de synchronisation Anki personnel (vous pouvez donc synchroniser avec votre propre serveur plutôt qu'avec AnkiWeb)"
 
-version = "1.0~ynh1"
+version = "2.4.0~ynh1"
 
 maintainers = ["eric_G"]
 
 [upstream]
-# NB: Only the "license" key is mandatory. Remove entries for which there's no relevant data
 license = " AGPL-3.0"
 website = "https://apps.ankiweb.net/"
 demo = "https://demo.example.com"
 admindoc = "https://yunohost.org/packaging_apps"
-userdoc = "https://yunohost.org/apps"
 code = "https://github.com/ericgaspar/Anki-sync-server_ynh"
 
 [integration]
@@ -39,7 +37,7 @@ ram.runtime = "50M"
 
     [install.path]
     type = "path"
-    default = "/example"
+    default = "/sync"
 
     [install.init_main_permission]
     type = "group"
@@ -48,51 +46,27 @@ ram.runtime = "50M"
     [install.admin]
     type = "user"
 
-    [install.password]
-
-    help.en = "Use the help field to add an information for the admin about this question."
-    help.fr = "Utilisez le champ aide pour ajouter une information à l'intention de l'administrateur à propos de cette question."
-    type = "password"
-
 [resources]
 
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/foo/bar/archive/refs/tags/v1.2.3.tar.gz"
-    sha256 = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
-
-    # These infos are used by https://github.com/YunoHost/apps/blob/master/tools/autoupdate_app_sources/autoupdate_app_sources.py
-    # to auto-update the previous asset urls and sha256sum + manifest version
-    # assuming the upstream's code repo is on github and relies on tags or releases
-    # See the 'sources' resource documentation for more details
-
-    # autoupdate.strategy = "latest_github_tag"
+    url = "https://github.com/ankicommunity/ankicommunity-sync-server/archive/refs/tags/v2.4.0.tar.gz"
+    sha256 = "1717f9d95f0a83b10ffb59ece3ff241efc4980181a3290e7834f60eaf5794304"
+    autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
-    # This will provision/deprovision a unix system user
 
     [resources.install_dir]
-    # This will create/remove the install dir as /var/www/$app
-    # and store the corresponding setting $install_dir
 
     [resources.data_dir]
-    # This will create/remove the data dir as /home/yunohost.app/$app
-    # and store the corresponding setting $data_dir
+    subdirs = ["collections"]
 
     [resources.permissions]
-    # This will configure SSOwat permission for $domain/$path/
-    # The initial allowed group of user is configured via the init_main_permission question (public=visitors, private=all_users)
     main.url = "/"
 
     [resources.ports]
-    # This will pick a random port for reverse-proxying and store it as the $port setting
+    main.default = 27701
 
     [resources.apt]
-    # This will automatically install/uninstall the following apt packages
-    # and implicitly define the $phpversion setting as 8.0 (if phpX.Y-foobar dependencies are listed)
-    packages = "mariadb-server, deb1, deb2, php8.0-foo, php8.0-bar"
-
-    [resources.database]
-    # This will automatically provision/deprovison a MySQL DB and store the corresponding credentials in settings $db_user, $db_name, $db_pwd
-    type = "mysql"
+    packages = "python3-venv, python3-pip"
