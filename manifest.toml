@@ -2,7 +2,7 @@
 
 packaging_format = 2
 
-id = "ankisyncd"
+id = "anki"
 name = "Anki sync server"
 description.en = "Personal Anki sync server (so you can sync against your own server rather than AnkiWeb)"
 description.fr = "Serveur de synchronisation Anki personnel (vous pouvez donc synchroniser avec votre propre serveur plutôt qu'avec AnkiWeb)"
@@ -49,13 +49,6 @@ ram.runtime = "50M"
     type = "password"
 
 [resources]
-
-    [resources.sources]
-
-    [resources.sources.main]
-    url = "https://github.com/ankicommunity/ankicommunity-sync-server/archive/refs/tags/v2.4.0.tar.gz"
-    sha256 = "1717f9d95f0a83b10ffb59ece3ff241efc4980181a3290e7834f60eaf5794304"
-    autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
 

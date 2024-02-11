@@ -10,17 +10,6 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
-#=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
-#=================================================
-ynh_script_progression --message="Setting up source files..." --weight=1
-
-mkdir "$install_dir"
-
-chown -R "$app:www-data" "$install_dir"
-
-#=================================================
 # SYSTEM CONFIGURATION
 #=================================================
 ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
@@ -48,12 +37,16 @@ chown "$app:$app" "$install_dir/.env"
 #=================================================
 ynh_script_progression --message="Building $app..." --weight=5
 
+mkdir -p "$install_dir"
+
 pushd "$install_dir"
 	python3 -m venv venv
 	venv/bin/pip install --upgrade pip
 	venv/bin/pip install anki
 	SYNC_USER1=$admin:$password ~/venv/bin/python3 -m anki.syncserver
 popd
+
+chown -R "$app:www-data" "$install_dir"
 
 #=================================================
 # GENERIC FINALIZATION
