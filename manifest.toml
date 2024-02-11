@@ -2,7 +2,7 @@
 
 packaging_format = 2
 
-id = "aankisyncd"
+id = "ankisyncd"
 name = "Anki sync server"
 description.en = "Personal Anki sync server (so you can sync against your own server rather than AnkiWeb)"
 description.fr = "Serveur de synchronisation Anki personnel (vous pouvez donc synchroniser avec votre propre serveur plutôt qu'avec AnkiWeb)"
