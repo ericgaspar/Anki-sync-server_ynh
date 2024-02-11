@@ -65,7 +65,7 @@ pushd "$install_dir"
 	venv/bin/pip install --upgrade pip
 	venv/bin/pip install -r src/requirements.txt
 	venv/bin/pip install -e src
-	venv/bin/python3 -m ankisyncd_cli adduser $admin
+	#venv/bin/python3 -m ankisyncd_cli adduser $admin
 popd
 
 #=================================================
