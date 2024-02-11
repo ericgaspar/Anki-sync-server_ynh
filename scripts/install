@@ -53,8 +53,8 @@ ynh_script_progression --message="Adding a configuration file..." --weight=1
 ynh_add_config --template="ankisyncd.conf" --destination="$install_dir/src/ankisyncd/ankisyncd.conf"
 ynh_add_config --template="requirements-protobuf.txt" --destination="$install_dir/src/requirements-protobuf.txt"
 
-chmod 400 "$install_dir/ankisyncd.conf"
-chown "$app:$app" "$install_dir/ankisyncd.conf"
+chmod 400 "$install_dir/src/ankisyncd/ankisyncd.conf"
+chown "$app:$app" "$install_dir/src/ankisyncd/ankisyncd.conf"
 
 #=================================================
 # BUILDING APP
