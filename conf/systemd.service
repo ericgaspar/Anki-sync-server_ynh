@@ -1,12 +1,12 @@
 [Unit]
-Description=Small description of the service
+Description==Anki sync server
 After=network.target
 
 [Service]
 Type=simple
 User=__APP__
 Group=__APP__
-WorkingDirectory=__INSTALL_DIR__/
+WorkingDirectory=__INSTALL_DIR__/src/
 ExecStart=__INSTALL_DIR__/venv/bin/python3 -m ankisyncd
 
 ### Depending on specificities of your service/app, you may need to tweak these

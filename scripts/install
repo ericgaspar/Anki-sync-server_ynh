@@ -51,6 +51,7 @@ yunohost service add "$app" --description="A short description of the app" --log
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 ynh_add_config --template="ankisyncd.conf" --destination="$install_dir/ankisyncd.conf"
+ynh_add_config --template="requirements-protobuf.txt" --destination="$install_dir/src/requirements-protobuf.txt"
 
 chmod 400 "$install_dir/ankisyncd.conf"
 chown "$app:$app" "$install_dir/ankisyncd.conf"
@@ -63,7 +64,7 @@ ynh_script_progression --message="Building $app..." --weight=5
 pushd "$install_dir"
 	python3 -m venv venv
 	venv/bin/pip install --upgrade pip
-	venv/bin/pip install -r src/requirements.txt
+	venv/bin/pip install -r src/requirements-protobuf.txt
 	venv/bin/pip install -e src
 	#venv/bin/python3 -m ankisyncd_cli adduser $admin
 popd
