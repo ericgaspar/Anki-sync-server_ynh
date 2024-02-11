@@ -4,15 +4,15 @@ packaging_format = 2
 
 id = "anki"
 name = "Anki sync server"
-description.en = "Personal Anki sync server (so you can sync against your own server rather than AnkiWeb)"
-description.fr = "Serveur de synchronisation Anki personnel (vous pouvez donc synchroniser avec votre propre serveur plutôt qu'avec AnkiWeb)"
+description.en = "Anki sync server (so you can sync against your own server rather than AnkiWeb)"
+description.fr = "Serveur de synchronisation Anki (vous pouvez donc synchroniser avec votre propre serveur plutôt qu'avec AnkiWeb)"
 
 version = "23.12.1~ynh1"
 
 maintainers = ["eric_G"]
 
 [upstream]
-license = " AGPL-3.0"
+license = "AGPL-3.0"
 website = "https://apps.ankiweb.net/"
 code = "https://github.com/ericgaspar/Anki-sync-server_ynh"
 

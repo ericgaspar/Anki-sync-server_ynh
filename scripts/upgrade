@@ -37,19 +37,7 @@ ynh_add_nginx_config
 
 ynh_add_systemd_config
 
-yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
-
-#=================================================
-# RECONFIGURE THE APP (UPDATE CONF, APPLY MIGRATIONS...)
-#=================================================
-# ADD A CONFIGURATION
-#=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=1
-
-ynh_add_config --template="ankisyncd.conf" --destination="$install_dir/ankisyncd.conf"
-
-chmod 400 "$install_dir/ankisyncd.conf"
-chown "$app:$app" "$install_dir/ankisyncd.conf"
+yunohost service add "$app" --description="Anki sync server" --log="/var/log/$app/$app.log"
 
 #=================================================
 # BUILDING OPEN WEB CALENDAR
@@ -59,10 +47,10 @@ ynh_script_progression --message="Building $app..." --weight=5
 pushd "$install_dir"
 	python3 -m venv venv
 	venv/bin/pip install --upgrade pip
-	venv/bin/pip install -r src/requirements.txt
-	venv/bin/pip install -e src
-	venv/bin/python3 -m ankisyncd_cli adduser $admin
+	venv/bin/pip install anki
 popd
+
+chown -R "$app:www-data" "$install_dir"
 
 #=================================================
 # START SYSTEMD SERVICE
