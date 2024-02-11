@@ -10,7 +10,6 @@ Environment="SYNC_PORT=__PORT__"
 Environment="SYNC_HOST=127.0.0.1"
 Environment="SYNC_BASE=__DATA_DIR__/"
 Environment="SYNC_USER1=__ADMIN__:__PASSWORD__"
-Environment="HTTPS_PROXY=http://__ADMIN__:__PASSWORD__@__DOMAIN__:__PORT__
 WorkingDirectory=__INSTALL_DIR__/
 ExecStart=__INSTALL_DIR__/venv/bin/python3 -m anki.syncserver
 

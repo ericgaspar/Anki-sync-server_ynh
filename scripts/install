@@ -18,19 +18,7 @@ ynh_add_nginx_config
 
 ynh_add_systemd_config
 
-yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
-
-#=================================================
-# APP INITIAL CONFIGURATION
-#=================================================
-# ADD A CONFIGURATION
-#=================================================
-#ynh_script_progression --message="Adding a configuration file..." --weight=1
-
-#ynh_add_config --template=".env" --destination="$install_dir/.env"
-
-#chmod 600 "$install_dir/.env"
-#chown "$app:$app" "$install_dir/.env"
+yunohost service add "$app" --description="Anki sync server" --log="/var/log/$app/$app.log"
 
 #=================================================
 # BUILDING APP
