@@ -50,7 +50,7 @@ yunohost service add "$app" --description="A short description of the app" --log
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-ynh_add_config --template="ankisyncd.conf" --destination="$install_dir/ankisyncd.conf"
+ynh_add_config --template="ankisyncd.conf" --destination="$install_dir/src/ankisyncd/ankisyncd.conf"
 ynh_add_config --template="requirements-protobuf.txt" --destination="$install_dir/src/requirements-protobuf.txt"
 
 chmod 400 "$install_dir/ankisyncd.conf"
