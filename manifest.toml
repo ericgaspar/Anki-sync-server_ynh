@@ -14,7 +14,6 @@ maintainers = ["eric_G"]
 [upstream]
 license = " AGPL-3.0"
 website = "https://apps.ankiweb.net/"
-demo = "https://demo.example.com"
 admindoc = "https://yunohost.org/packaging_apps"
 code = "https://github.com/ericgaspar/Anki-sync-server_ynh"
 

@@ -56,7 +56,7 @@ chmod 400 "$install_dir/ankisyncd.conf"
 chown "$app:$app" "$install_dir/ankisyncd.conf"
 
 #=================================================
-# BUILDING OPEN WEB CALENDAR
+# BUILDING APP
 #=================================================
 ynh_script_progression --message="Building $app..." --weight=5
 
