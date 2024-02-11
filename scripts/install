@@ -10,23 +10,13 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# INITIALIZE AND STORE SETTINGS
-#=================================================
-
-# If you need to, you can define custom settings
-# (or remove this section entirely if not relevant for you)
-foo="bar"
-ynh_app_setting_set --app=$app --key=foo --value=$foo
-
-#=================================================
 # APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=1
 
-# Download, check integrity, uncompress and patch the source from manifest.toml
-ynh_setup_source --dest_dir="$install_dir"
+mkdir "$install_dir"
 
 chown -R "$app:www-data" "$install_dir"
 
@@ -35,10 +25,8 @@ chown -R "$app:www-data" "$install_dir"
 #=================================================
 ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
 
-# Create a dedicated NGINX config using the conf/nginx.conf template
 ynh_add_nginx_config
 
-# Create a dedicated systemd config
 ynh_add_systemd_config
 
 yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
@@ -50,11 +38,10 @@ yunohost service add "$app" --description="A short description of the app" --log
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-ynh_add_config --template="ankisyncd.conf" --destination="$install_dir/src/ankisyncd/ankisyncd.conf"
-ynh_add_config --template="requirements-protobuf.txt" --destination="$install_dir/src/requirements-protobuf.txt"
+ynh_add_config --template=".env" --destination="$install_dir/.env"
 
-chmod 400 "$install_dir/src/ankisyncd/ankisyncd.conf"
-chown "$app:$app" "$install_dir/src/ankisyncd/ankisyncd.conf"
+chmod 600 "$install_dir/.env"
+chown "$app:$app" "$install_dir/.env"
 
 #=================================================
 # BUILDING APP
@@ -64,9 +51,8 @@ ynh_script_progression --message="Building $app..." --weight=5
 pushd "$install_dir"
 	python3 -m venv venv
 	venv/bin/pip install --upgrade pip
-	venv/bin/pip install -r src/requirements-protobuf.txt
-	venv/bin/pip install -e src
-	#venv/bin/python3 -m ankisyncd_cli adduser $admin
+	venv/bin/pip install anki
+	SYNC_USER1=$admin:$password ~/venv/bin/python3 -m anki.syncserver
 popd
 
 #=================================================
