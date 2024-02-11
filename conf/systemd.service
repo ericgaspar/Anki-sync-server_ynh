@@ -6,8 +6,8 @@ After=network.target
 Type=simple
 User=__APP__
 Group=__APP__
-WorkingDirectory=__INSTALL_DIR__/src/
-ExecStart=__INSTALL_DIR__/venv/bin/python3 -m ankisyncd
+WorkingDirectory=__INSTALL_DIR__/
+ExecStart=__INSTALL_DIR__/venv/bin/python3 -m anki.syncserver
 
 ### Depending on specificities of your service/app, you may need to tweak these
 ### .. but this should be a good baseline
